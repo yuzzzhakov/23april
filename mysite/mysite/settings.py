@@ -26,7 +26,8 @@ SECRET_KEY = 's9!#_&9#h8_bkqzk+di#!=oqamcousi$c1$=ao83ipju1&f1ld'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'andro8.pythonanywhere.com'
+    'andro8.pythonanywhere.com',
+    '127.0.0.1',
     ]
 
 
