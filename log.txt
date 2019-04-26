@@ -3,3 +3,4 @@
 24april 11.35 - start with tutorial04
 
 25april 11.33 - added .gitignore file with __pycache__, deleted test1.txt
+26april 20.50 - Start of tutorial05
