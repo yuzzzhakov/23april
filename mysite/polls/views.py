@@ -19,9 +19,16 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
+
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+
+class DeleteView(generic.DeleteView):
+    model = Question
+    template_name = 'polls/del.html'
+
 
 """
 
@@ -40,6 +47,7 @@ def results(request, question_id):
 
 """
 
+
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -53,7 +61,19 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+def delete(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, 'polls/del.html', {
+            'question': question,
+            'error_message': "You didn't select a choice.",
+        })
+    else:
+        selected_choice.votes -= 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse('polls:results', args=(question_id,)))
