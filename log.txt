@@ -8,3 +8,5 @@
 27april 18.38 - The end of tutorial05
 
 28april 00.09 - The end of tutorial07
+
+01may 20:03 - Changed gitignore file withon gitignore.io
